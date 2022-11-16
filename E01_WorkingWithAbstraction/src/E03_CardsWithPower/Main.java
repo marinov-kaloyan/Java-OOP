@@ -1,4 +1,4 @@
-package E01_WorkingWithAbstractionExercise.E03_CardsWithPower;
+package E03_CardsWithPower;
 
 import java.util.Scanner;
 
