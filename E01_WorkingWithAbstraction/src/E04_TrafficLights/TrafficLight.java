@@ -1,4 +1,4 @@
-package E01_WorkingWithAbstractionExercise.E04_TrafficLights;
+package E04_TrafficLights;
 
 public class TrafficLight {
     private Colour colour;
