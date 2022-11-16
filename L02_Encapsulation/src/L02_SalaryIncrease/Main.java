@@ -1,4 +1,4 @@
-package L02_Encapsulation.L02_SalaryIncrease;
+package L02_SalaryIncrease;
 
 import java.io.BufferedReader;
 import java.io.IOException;
