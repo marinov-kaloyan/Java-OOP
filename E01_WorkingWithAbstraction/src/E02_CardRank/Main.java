@@ -1,4 +1,4 @@
-package E01_WorkingWithAbstractionExercise.E02_CardRank;
+package E02_CardRank;
 
 public class Main {
     public static void main(String[] args) {
