@@ -1,4 +1,4 @@
-package E01_WorkingWithAbstractionExercise.E01_CardSuits;
+package E01_CardSuits;
 
 public class Main {
     public static void main(String[] args) {
