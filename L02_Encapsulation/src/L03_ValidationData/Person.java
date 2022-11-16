@@ -1,4 +1,4 @@
-package L02_Encapsulation.L03_ValidationData;
+package L03_ValidationData;
 
 public class Person {
     private String firstName;
@@ -32,7 +32,9 @@ public class Person {
     }
 
     public void setSalary(double salary) {
-        if(salary<460)
+        if(salary<460){
+            throw  new IllegalArgumentException("Salary cannot be less than 460 leva");
+        }
         this.salary = salary;
     }
 
@@ -44,7 +46,7 @@ public class Person {
     }
 
     public void setLastName(String lastName) {
-        if(firstName.length()<3){
+        if(lastName.length()<3){
             throw new IllegalArgumentException("Last name cannot be less than 3 symbols");
         }
         this.lastName = lastName;
