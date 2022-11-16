@@ -1,4 +1,4 @@
-package L02_Encapsulation.SortByNameAndAge_01;
+package L01_SortByNameAndAge;
 
 public class Person {
     private String firstName;
@@ -27,6 +27,6 @@ public class Person {
 
     @Override
     public String toString() {
-        return String.format("%s %s is %d years old.", this.getAge(), this.getLastName(), this.getAge());
+        return String.format("%s %s is %d years old.", this.getFirstName(), this.getLastName(), this.getAge());
     }
 }
