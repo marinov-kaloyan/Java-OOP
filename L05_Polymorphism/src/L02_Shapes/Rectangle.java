@@ -1,8 +1,8 @@
 package L02_Shapes;
 
 public class Rectangle extends  Shape{
-    private Double height;
-    private  Double width;
+    private final Double height;
+    private final   Double width;
 
 
     public Rectangle(Double height, Double width) {

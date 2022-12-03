@@ -1,13 +1,13 @@
 package L02_Shapes;
 
 public class Circle extends Shape {
-    private Double radius;
+    private final Double radius;
 
     public Circle(Double radius) {
         this.radius = radius;
     }
 
-    public final Double getRadius() {
+    public  Double getRadius() {
         return radius;
     }
 
