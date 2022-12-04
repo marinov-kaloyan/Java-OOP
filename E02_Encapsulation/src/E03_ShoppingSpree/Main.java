@@ -3,54 +3,86 @@ package E03_ShoppingSpree;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.Set;
+
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Scanner;
 
 public class Main {
+    static Map<String, Person> people = new LinkedHashMap<>();
+    static Map<String, Product> products = new LinkedHashMap<>();
+    static boolean catchException = false;
+
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        String[] people = scanner.nextLine().split(";");
-        String[] products = scanner.nextLine().split(";");
-        Map<String, Person> peopleMap = new LinkedHashMap<>();
-        Map<String, Product> productMap = new LinkedHashMap<>();
-        for (int i = 0; i < people.length; i++) {
-            String name = people[i].split("=")[0];
-            double money = Double.parseDouble(people[i].split("=")[1]);
+        Scanner console = new Scanner(System.in);
+
+        fillPeople(console);
+        if(catchException) {
+            return;
+        }
+
+        fillProduct(console);
+        if(catchException) {
+            return;
+        }
+
+        String command;
+
+        while (!"END".equals(command = console.nextLine())) {
+            buyProduct(command);
+        }
+
+        printPeopleList();
+    }
+
+    private static void printPeopleList() {
+        people.values().forEach(System.out::println);
+    }
+
+    private static void buyProduct(String command) {
+        String name = command.split("\\s+")[0];
+        String product = command.split("\\s+")[1];
+
+        try {
+            people.get(name).buyProduct(products.get(product));
+            System.out.println(name + " bought " + product);
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private static void fillPeople(Scanner console) {
+        String[] peopleWhitMoney = console.nextLine().split(";");
+
+        Arrays.stream(peopleWhitMoney).forEach(s -> {
+            String name = s.split("=")[0];
+            double money = Double.parseDouble(s.split("=")[1]);
+
             try {
-                Person person = new Person(name, money);
-                peopleMap.put(name, person);
+                Person personToAdd = new Person(name, money);
+                people.put(name, personToAdd);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-                return;
+                catchException = true;
             }
-        }
-        for (int i = 0; i < products.length; i++) {
-            String name = products[i].split("=")[0];
-            double cost = Double.parseDouble(products[i].split("=")[1]);
+        });
+    }
+
+    private static void fillProduct(Scanner console) {
+        String[] productWithPrice = console.nextLine().split(";");
+
+        Arrays.stream(productWithPrice).forEach(s -> {
+            String name = s.split("=")[0];
+            double cost = Double.parseDouble(s.split("=")[1]);
+
             try {
-                Product product = new Product(name, cost);
-                productMap.put(name, product);
+                Product productToAdd = new Product(name, cost);
+                products.put(name, productToAdd);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-                return;
+                catchException = true;
             }
-        }
-
-        String command = scanner.nextLine();
-        while (!command.equals("END")) {
-            String personName = command.split(" ")[0];
-            String productName = command.split(" ")[1];
-            Person buyer  = peopleMap.get(personName);
-            Product product = productMap.get(productName);
-            try{
-                buyer.buyProduct(product);
-
-            }
-            catch (IllegalArgumentException ex){
-                System.out.println(ex.getMessage());
-            }
-command = scanner.nextLine();
-        }
-peopleMap.values().forEach(System.out::println);
-
+        });
     }
 }
