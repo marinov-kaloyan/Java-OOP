@@ -1,5 +1,3 @@
-package L01_Reflection;
-
 import java.io.Serializable;
 
 public class Reflection implements Serializable {
